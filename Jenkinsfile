@@ -39,14 +39,7 @@ pipeline {
                   sh "git push https://github.com/avsarasan/gitops-register-app main"
                 }
             }
-        }
+        }            
+     }
+}
 
-               stage("Trigger CD Pipeline") {
-            steps {
-                script {
-                    sh "curl -v -k --user avsarasan:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' '13.93.24.236:8080/job/gitops-register-app-cd/buildWithParameters?token=gitops-token'"
-                     }
-                   }
-                 }
-               }
-             }
